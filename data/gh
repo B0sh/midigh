@@ -1,0 +1,11 @@
+Guitar Hero Controller
+STARPOWER	Star Power	3	SLIDER	Z Rotation	0	1.0	0.0
+WHAMMY	Whammy Bar	3	SLIDER	Slider	0	1.0	0.0
+GREEN	Green Fret	1	BUTTON	Button 0	0	0.0	0.0
+RED	Red Fret	1	BUTTON	Button 1	0	0.0	0.0
+YELLOW	Yellow Fret	1	BUTTON	Button 3	0	0.0	0.0
+BLUE	Blue Fret	1	BUTTON	Button 2	0	0.0	0.0
+ORANGE	Orange Fret	1	BUTTON	Button 4	0	0.0	0.0
+START	Start Button	1	BUTTON	Button 7	0	0.0	0.0
+SELECT	Select Button	1	BUTTON	Button 6	0	0.0	0.0
+DPAD	Strum Bar / DPAD	2	HAT	cooliehat: Hat Switch	0	1.0	0.0

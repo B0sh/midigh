@@ -1,4 +1,9 @@
-<b>Setup for Mac</b>
+# Setup for Windows
+
+1. Loop MIDI
+
+
+# Setup for Mac
 
 1: do not use a hackintosh (my hackintosh didn't work)
 
@@ -17,3 +22,18 @@
 5: Get libaries required: GameControlPlus, Midibus
     
 6: Run MIDIGH
+
+
+
+
+## Chart for hat codes
+
+Pos 	X 	Y 	Direction hat is pushed
+1 	-0.707 	-0.707 	Up-left
+2 	0 	-1 	Up
+3 	0.707 	-0.707 	Up-right
+4 	1 	0 	Right
+5 	0.707 	0.707 	Down-right
+6 	0 	1 	Down
+7 	-0.707 	0.707 	Down-left
+8 	-1 	0 	Left
