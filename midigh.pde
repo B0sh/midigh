@@ -10,6 +10,8 @@
 // - Polling controller input faster than 60hz
 // - Instrument switcher
 // - Notes class
+import java.util.List;
+import java.util.ArrayList;
 
 String SCALE = "Pentatonic";
 boolean[] HELDKEYS;
@@ -20,12 +22,13 @@ int STARPOWER;
 int VOLUME = 69;
 
 int OFFSET = 20;
-int TRANSPOSE = 0;
+int TRANSPOSE = 5;
 
 KeyboardController keyboard;
 int instrument_index = 0;
 Instrument instrument;
 Instrument[] instruments;
+List<Integer> fretboard;
 
 void settings() {
     size(400, 900);
@@ -46,11 +49,13 @@ void setup()
     };
     instrument = instruments[0];    
 
+    fretboard = setFretboard("Pentatonic", TRANSPOSE);
+
     HELDKEYS = new boolean[256];
     HELD_FRETS = new boolean[5];
     FRETS_PITCH = new int[5];
     
-    FRETS_PITCH = setFrets(SCALE, OFFSET, 0);
+    FRETS_PITCH = setFrets(OFFSET, fretboard);
     
     initMidiInterface();
     initGameController();
@@ -77,19 +82,19 @@ void switchInstrument() {
 
 void offsetUp() {
     OFFSET += 1;
-    FRETS_PITCH = setFrets(SCALE, OFFSET, TRANSPOSE);
+    FRETS_PITCH = setFrets(OFFSET, fretboard);
 }
 void offsetDown() {
     OFFSET -= 1;
-    FRETS_PITCH = setFrets(SCALE, OFFSET, TRANSPOSE);
+    FRETS_PITCH = setFrets(OFFSET, fretboard);
 } 
 void transposeUp() {
     TRANSPOSE += 1;
-    FRETS_PITCH = setFrets(SCALE, OFFSET, TRANSPOSE);
+    FRETS_PITCH = setFrets(OFFSET, fretboard);
 }
 void transposeDown() {
     TRANSPOSE -= 1;
-    FRETS_PITCH = setFrets(SCALE, OFFSET, TRANSPOSE);
+    FRETS_PITCH = setFrets(OFFSET, fretboard);
 }
 
 void FULLSYSTEMRESET() {
@@ -97,5 +102,5 @@ void FULLSYSTEMRESET() {
     WHAMMY = 64;
     OFFSET = 20;
     TRANSPOSE = 0;
-    FRETS_PITCH = setFrets(SCALE, OFFSET, TRANSPOSE);
+    FRETS_PITCH = setFrets(OFFSET, fretboard);
 }

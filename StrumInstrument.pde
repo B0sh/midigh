@@ -48,18 +48,18 @@ class StrumInstrument extends Instrument
                 chord += pow(2, i);
         }
         
-        if (chord == unbinary("11100")) {
-            int x = 12*4+2;
-            return new int[] { 0, x+19, x+14, x+21, x+0 };
-        }
-        if (chord == unbinary("01110")) {
-            int x = 12*4;
-            return new int[] { x+0, x+19, x+14, x+16, 0 };
-        }
-        if (chord == unbinary("11010")) {
-            int x = 12*4;
-            return new int[] { x-5, x+14, x+16, x+11, x+19 };
-        }
+        // if (chord == unbinary("11100")) {
+        //     int x = 12*4+2;
+        //     return new int[] { 0, x+19, x+14, x+21, x+0 };
+        // }
+        // if (chord == unbinary("01110")) {
+        //     int x = 12*4;
+        //     return new int[] { x+0, x+19, x+14, x+16, 0 };
+        // }
+        // if (chord == unbinary("11010")) {
+        //     int x = 12*4;
+        //     return new int[] { x-5, x+14, x+16, x+11, x+19 };
+        // }
         //if (chord == unbinary("11000")) {
         //  return new int[] { 36, 36+7, 36+12, 36+12+2, 36+12+5 };
         //} else if (chord == unbinary("10100")) {
