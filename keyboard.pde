@@ -56,10 +56,11 @@ void keyReleased() {
 }
 
 void printKey(String label, char myKey, int myKeyCode){
-    String timeStamp = "time: " + millis() + ": "; // current time in milliseconds since sketch launch
-    if ( myKey == CODED) {
-        println(timeStamp + label + " --> CODED: " + myKeyCode);
+    String timestamp = "time: " + millis() + ": ";
+
+    if (myKey == CODED) {
+        println(timestamp + label + " --> CODED: " + myKeyCode);
     } else {
-        println(timeStamp + label + " --> CHAR: '"  + myKey + "' CODED: " + myKeyCode);
+        println(timestamp + label + " --> CHAR: '"  + myKey + "' CODED: " + myKeyCode);
     } 
 }

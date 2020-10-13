@@ -9,15 +9,9 @@ class StrumInstrument extends Instrument
     void up() { strum(); }
     void down() { strum(); }
 
-    void strum() {
-        // loop through whats in the last held frets varible
-        //   and release those notes
-        for (int i = 0; i < 5; i++) {
-            if (last_held_frets_pitch[i] != 0) {
-                int pitch = last_held_frets_pitch[i];
-                myBus.sendNoteOff(0, pitch, VOLUME); // Send a Midi noteOf321
-            }
-        }
+    void strum()
+    {
+        cleanup();
         
         int[] pitches = specialStrumChords();
         
@@ -32,6 +26,17 @@ class StrumInstrument extends Instrument
             } else {
                 last_held_frets_pitch[i] = 0;
             }
+        }
+    }
+   
+    void cleanup()
+    {
+        for (int i = 0; i < last_held_frets_pitch.length; i++)
+        {
+            if (last_held_frets_pitch[i] != 0) {
+                myBus.sendNoteOff(0, last_held_frets_pitch[i], VOLUME);
+            }
+            last_held_frets_pitch[i] = 0;
         }
     }
 

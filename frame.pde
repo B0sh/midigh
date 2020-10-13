@@ -11,10 +11,8 @@ void drawFrame()
     scale (1);
     background(#0A0A30);
     fill(127,30,30);
-        // rect(0, -20, width, height, 10);
     
     translate(0, map(WHAMMY, 64, 0, 10, 100));
-    
     
     // generate the frets
     int fret_y = 72;
@@ -23,8 +21,7 @@ void drawFrame()
     int fret_width = 250;
     int fret_height = 1000;
     int button_height = 72;
-    
-    
+
     fill(33);
     strokeWeight(5);
     stroke(0);
@@ -38,13 +35,6 @@ void drawFrame()
     
     strokeWeight(1);
 
-    // legacy buttons
-    fill(#2A2A50);
-    if (HELD_FRETS[0]) rect(10, -10, 10, 10);
-    if (HELD_FRETS[1]) rect(20, -10, 10, 10);
-    if (HELD_FRETS[2]) rect(30, -10, 10, 10);
-    if (HELD_FRETS[3]) rect(40, -10, 10, 10);
-    if (HELD_FRETS[4]) rect(50, -10, 10, 10);
 
     fill(255);
     for (int i = 0; i < 5; i++) {

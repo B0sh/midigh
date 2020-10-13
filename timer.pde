@@ -1,12 +1,12 @@
 int timer_start = -1;
-boolean setupButtons = false;
-Button startButton;
-Button stopButton;
+boolean setup_buttons = false;
+Button start_button;
+Button stop_button;
 
 void drawTimer(int x, int y) {
-    if (!setupButtons) {
-        startButton = new Button("Start", x, y-20, 80, 40);
-        stopButton = new Button("Stop", x, y-20, 80, 40);
+    if (!setup_buttons) {
+        start_button = new Button("Start", x, y-20, 80, 40);
+        stop_button = new Button("Stop", x, y-20, 80, 40);
     }
     
     if (timer_start != -1) {
@@ -21,21 +21,21 @@ void drawTimer(int x, int y) {
             text(minutes+":0"+seconds, x+150, y-5);
         
         textSize(16);
-        stopButton.Draw();
+        stop_button.draw();
     }
     else
     {
         textSize(16);
-        startButton.Draw();
+        start_button.draw();
       
     }
     
 }
 
 void mousePressed() {
-    if (startButton.MouseIsOver() && timer_start == -1) {
+    if (start_button.mouseIsOver() && timer_start == -1) {
         timer_start = millis();
-    } else if (stopButton.MouseIsOver() && timer_start != -1) {
+    } else if (stop_button.mouseIsOver() && timer_start != -1) {
         timer_start = -1; 
         
     }
