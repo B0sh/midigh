@@ -36,5 +36,7 @@ class Instrument
 
     void starpower (int starpower) { }
 
+    void cleanup() {}
+
 }
 

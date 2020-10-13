@@ -21,9 +21,12 @@ int VOLUME = 69;
 
 int OFFSET = 20;
 int TRANSPOSE = 0;
+int inputPolls = 0;
 
 KeyboardController keyboard;
+int instrumentIndex = 0;
 Instrument instrument;
+Instrument[] instruments;
 
 void settings() {
     size(400, 900);
@@ -37,10 +40,16 @@ void setup()
     textFont(font);
 
     keyboard = new KeyboardController();
-    instrument = new FretInstrument();
+    instruments = new Instrument[] {
+        new FretInstrument(),
+        new StrumInstrument()
+    };
+    instrument = instruments[0];
     
     initGameController();
     initMidiInterface();
+
+    thread("pollInput");
     
     HELDKEYS = new boolean[256];
     HELD_FRETS = new boolean[5];
@@ -48,23 +57,21 @@ void setup()
     
     FRETS_PITCH = setFrets(SCALE, OFFSET, 0);
 }
+void draw() {
+    drawFrame();
+}
 
-int idd = 0;
-void switchInstrument() {
-    println(idd);
-    if (idd == 0) {
-        instrument = new FretInstrument();
-        idd = 1;
-    }
-    else {
-        instrument = new StrumInstrument();
-        idd = 0;
+void pollInput() {
+    while (true) {
+        delay(1);
+        pollControllerInput();
     }
 }
 
-void draw() {
-    pollControllerInput();
-    drawFrame();
+void switchInstrument() {
+    instrumentIndex++;
+    instrument.cleanup();
+    instrument = instruments[instrumentIndex % instruments.length];
 }
 
 void offsetUp() {
