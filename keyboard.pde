@@ -16,7 +16,6 @@ class KeyboardController
             e.printStackTrace();
             exit();
         }
-        println ("INIT");
     }
 
     // sendKeyPress

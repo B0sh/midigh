@@ -18,7 +18,6 @@ void initGameController()
         System.exit(-1);
     }
     
-    // Setup press and depress events (don't know how to pass the input in -.-)
     controller.getButton("GREEN").plug(this, "depressGreen", ControlIO.ON_PRESS);
     controller.getButton("RED").plug(this, "depressRed", ControlIO.ON_PRESS);
     controller.getButton("YELLOW").plug(this, "depressYellow", ControlIO.ON_PRESS);
@@ -35,8 +34,16 @@ void initGameController()
     controller.getButton("START").plug(this, "startButton", ControlIO.ON_PRESS);
 }
 
+void selectButton() {
+    instrument.select();
+}
+
+void startButton() {
+    instrument.start();
+}
+
 // get analog controller input
-void getControllerInput()
+void pollControllerInput()
 {
     HELD_FRETS[0] = controller.getButton("GREEN").pressed();
     HELD_FRETS[1] = controller.getButton("RED").pressed();
@@ -45,13 +52,11 @@ void getControllerInput()
     HELD_FRETS[4] = controller.getButton("ORANGE").pressed();
     
     WHAMMY = int(map(controller.getSlider("WHAMMY").getValue(), -1, 1, 64, 32));
-    if (WHAMMY < 60) {
-        sendPitchBend(WHAMMY);
-    } else if (LAST_PITCH_BEND != 0) { // ensure that whammy is reset
-        sendPitchBend(64); 
-    }
 
-    // VOLUME = int(map(controller.getSlider("STARPOWER").getValue(), -0.75, 1, 100, 4));
+    STARPOWER = int(map(controller.getSlider("STARPOWER").getValue(), -0.75, 1, 100, 4));
+
+    instrument.whammy(WHAMMY);
+    instrument.starpower(STARPOWER);
 
     processDpadInput();
 }
@@ -70,28 +75,99 @@ void processDpadInput()
         position_id = 8;
     }
     
-    if (position_id != last_dpad_position_id)
+    if (position_id != last_dpad_position_id && instrument != null)
     {
         last_dpad_position_id = position_id;
-
 
         switch (position_id) {
             case 2: // Up
                 // println("[", millis() , "] DPAD Up");
-                upStrum();
+                instrument.up();
                 break;
             case 4: // Right
                 // println("[", millis() , "] DPAD Right");
-                offsetUp();
+                instrument.right();
                 break;
             case 6: // Down
                 // println("[", millis() , "] DPAD Down");
-                downStrum();
+                instrument.down();
                 break;
             case 8: // Left
                 // println("[", millis() , "] DPAD Left");
-                offsetDown();
+                instrument.left();
                 break;
         }
+    }
+}
+
+void depressGreen()
+{
+    if (instrument != null) 
+    {
+        instrument.depressFret(0);
+    }
+}
+void depressRed()
+{
+    if (instrument != null)
+    {
+        instrument.depressFret(1);
+    }
+}
+void depressYellow()
+{
+    if (instrument != null)
+    {
+        instrument.depressFret(2);
+    }
+}
+void depressBlue()
+{
+    if (instrument != null)
+    {
+        instrument.depressFret(3);
+    }
+}
+void depressOrange()
+{
+    if (instrument != null)
+    {
+        instrument.depressFret(4);
+    }
+}
+
+void releaseGreen()
+{
+    if (instrument != null)
+    {
+        instrument.releaseFret(0);
+    }
+}
+void releaseRed()
+{
+    if (instrument != null)
+    {
+        instrument.releaseFret(1);
+    }
+}
+void releaseYellow()
+{
+    if (instrument != null)
+    {
+        instrument.releaseFret(2);
+    }
+}
+void releaseBlue()
+{
+    if (instrument != null)
+    {
+        instrument.releaseFret(3);
+    }
+}
+void releaseOrange()
+{
+    if (instrument != null)
+    {
+        instrument.releaseFret(4);
     }
 }

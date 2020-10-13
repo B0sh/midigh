@@ -36,8 +36,6 @@ void drawFrame()
     textSize(32);
     text("The Plastic Instrument", width/2, 20);
     
-    
-
     strokeWeight(1);
 
     // legacy buttons
@@ -50,12 +48,10 @@ void drawFrame()
 
     fill(255);
     for (int i = 0; i < 5; i++) {
-        if (CONTROL_MODE == 1 && HELD_FRETS[i]) 
-        fill (FRET_COLORS[i]);
-        else if (CONTROL_MODE == 2 && LAST_STRUM_HELD_FRETS_PITCH[i] != 0) 
-        fill(FRET_COLORS[i]);
+        if (HELD_FRETS[i]) 
+            fill (FRET_COLORS[i]);
         else 
-        fill (140);
+            fill (140);
         
         rect(fret_x, fret_y + button_height*i, fret_width, button_height-3, 16);
     }
@@ -63,30 +59,21 @@ void drawFrame()
     textAlign(LEFT, CENTER);
     textSize(40);
     fill(0);
-    // if Logic Mode is active no notes are played
-    if (CONTROL_MODE != 3) {
-        for (int i = 0; i < 5; i++) {
-            text(midiNumberToNote(FRETS_PITCH[i]), fret_x + padding, fret_y + 30 +  button_height * i);
-        }
+    for (int i = 0; i < 5; i++) {
+        text(midiNumberToNote(FRETS_PITCH[i]), fret_x + padding, fret_y + 30 +  button_height * i);
     }
+
     textAlign(LEFT, BOTTOM);
-
-
     fill (#DDA300);
     textSize(32);
     
-    // set the display text for the mode
-    String mode = "";
-    switch (CONTROL_MODE) {
-        case 1: mode = "Tap Mode"; break;
-        case 2: mode = "Strum Mode"; break;
-        case 3: mode = "Logic Mode"; break;
+    if (instrument != null)
+    {
+        text(instrument.name(), fret_x, fret_y + button_height * 5 + 48);
+        text("Volume: " + VOLUME, fret_x, fret_y + button_height * 5 + 48 + 32);
+        text("Whammy: " + WHAMMY, fret_x, fret_y + button_height * 5 + 48 + 64);
+        text("Scale: (" + OFFSET + ", "+TRANSPOSE + ")", fret_x, fret_y + button_height * 5 + 48 + 96);
     }
-    
-    text(mode, fret_x, fret_y + button_height * 5 + 48);
-    text("Volume: " + VOLUME, fret_x, fret_y + button_height * 5 + 48 + 32);
-    text("Whammy: " + WHAMMY, fret_x, fret_y + button_height * 5 + 48 + 64);
-    text("Scale: (" + OFFSET + ", "+TRANSPOSE + ")", fret_x, fret_y + button_height * 5 + 48 + 96);
     
     // Metronome
         
