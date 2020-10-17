@@ -6,6 +6,15 @@ class StrumInstrument extends Instrument
 
     int[] last_held_frets_pitch = new int[5];
 
+    void releaseFret(int fret_index)
+    {
+        if (last_held_frets_pitch[fret_index] != 0)
+        {
+            myBus.sendNoteOff(0, last_held_frets_pitch[fret_index], VOLUME);
+            last_held_frets_pitch[fret_index] = 0;
+        }
+    }
+
     void up() { strum(); }
     void down() { strum(); }
 

@@ -4,9 +4,9 @@ List<Integer> setFretboard(String scale, int transposition)
 
     if (scale.equals("Pentatonic")) 
     {
-        int[] notes = new int[] {0, 2, 4, 7, 9};
-        // notes = new int[] {0, 3, 5, 7, 8};
-        // notes = new int[] { 0, 1, 3, 5, 8 };
+        // int[] notes = new int[] {0, 2, 4, 7, 9};
+        // int[] notes = new int[] {0, 3, 5, 7, 8};
+        int[] notes = new int[] { 0, 1, 3, 5, 8 };
 
         int last_pitch = transposition;
         int notes_index = 0;

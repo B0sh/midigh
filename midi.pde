@@ -18,13 +18,16 @@ void initMidiInterface()
 // sends a raw MIDI message for pitch bend
 int LAST_PITCH_BEND = 0;
 void sendPitchBend(int bendLevel) {
-    LAST_PITCH_BEND = bendLevel;
+    if (LAST_PITCH_BEND != bendLevel)
+    {
+        LAST_PITCH_BEND = bendLevel;
 
-    // 0xE0 is the pitch bend status code plus channel 0
-    //  according to http://www.music-software-development.com/midi-tutorial.html
-    // databye 1 is the LSB (least significant bit) a la cents
-    // databyte 2 is the MSB (most significant bit) a la  semitones?
-    myBus.sendMessage(0xE0, 0, 0x00, bendLevel); 
+        // 0xE0 is the pitch bend status code plus channel 0
+        //  according to http://www.music-software-development.com/midi-tutorial.html
+        // databye 1 is the LSB (least significant bit) a la cents
+        // databyte 2 is the MSB (most significant bit) a la  semitones?
+        myBus.sendMessage(0xE0, 0, 0x00, bendLevel); 
+    }
 }
 
 // unset every midi note
