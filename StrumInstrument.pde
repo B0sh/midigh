@@ -15,6 +15,11 @@ class StrumInstrument extends Instrument
         }
     }
 
+    boolean isFretHeld(int fret_index)
+    {
+        return last_held_frets_pitch[fret_index] != 0;
+    }
+
     void up() { strum(); }
     void down() { strum(); }
 

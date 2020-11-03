@@ -19,6 +19,11 @@ class FretInstrument extends Instrument
         myBus.sendNoteOff(0, pitch, VOLUME);
         fret_last_pitch[fret_index] = 0;
     }
+
+    boolean isFretHeld(int fret_index)
+    {
+        return fret_last_pitch[fret_index] != 0;
+    }
     
     void cleanup()
     {

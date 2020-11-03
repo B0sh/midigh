@@ -7,6 +7,13 @@ class MonophonicInstrument extends Instrument
     int[] fret_last_pitch = new int[5];
     boolean[] held_frets = new boolean[5];
 
+    void up() {
+        offsetDown();
+    }
+    void down() {
+        offsetUp();
+    }
+
     void depressFret(int fret_index)
     {
         cleanup();
@@ -39,6 +46,11 @@ class MonophonicInstrument extends Instrument
         {
             depressFret(activate_fret);
         }
+    }
+
+    boolean isFretHeld(int fret_index)
+    {
+        return fret_last_pitch[fret_index] != 0;
     }
     
     void cleanup()

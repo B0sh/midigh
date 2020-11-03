@@ -27,31 +27,55 @@ class KeyboardController
 }
 
 
-
 // Processing Built in
-void keyPressed() {
-    HELDKEYS[keyCode] = true;
-    if (HELDKEYS[16]) {
-            
-        switch (keyCode) {
-            case 39: transposeUp(); transposeUp(); transposeUp(); transposeUp(); break;
-            case 37: transposeDown(); transposeDown(); transposeDown(); transposeDown(); transposeDown(); break;
-            
+boolean[] held_keys = new boolean[256];
+void keyPressed()
+{
+    if (held_keys[keyCode] == false) 
+    {
+        if (held_keys[16]) {
+            switch (keyCode) {
+                case 39: transposeUp(); transposeUp(); transposeUp(); transposeUp(); break;
+                case 37: transposeDown(); transposeDown(); transposeDown(); transposeDown(); transposeDown(); break;
+            }
         }
+
+        switch (keyCode) {
+            case 38: offsetUp(); offsetUp(); offsetUp(); offsetUp(); offsetUp(); break;
+            case 40: offsetDown(); offsetDown(); offsetDown(); offsetDown(); offsetDown(); break;
+            case 39: transposeUp(); break;
+            case 37: transposeDown(); break;
+            case 123: switchInstrument(); break;
+
+            case 9: // Tab
+                toggleOptions();
+                break;
+
+            case 49: depressGreen(); break;
+            case 50: depressRed(); break;
+            case 51: depressYellow(); break;
+            case 52: depressBlue(); break;
+            case 53: depressOrange(); break;
+        }
+
     }
-    switch (keyCode) {
-        case 38: offsetUp(); offsetUp(); offsetUp(); offsetUp(); offsetUp(); break;
-        case 40: offsetDown(); offsetDown(); offsetDown(); offsetDown(); offsetDown(); break;
-        case 39: transposeUp(); break;
-        case 37: transposeDown(); break;
-        
-    }
+
+    held_keys[keyCode] = true;
     
     printKey("**** keyPressed", key, keyCode);
 }
 
 void keyReleased() {
-    HELDKEYS[keyCode] = false;
+    switch (keyCode)
+    {
+        case 49: releaseGreen(); break;
+        case 50: releaseRed(); break;
+        case 51: releaseYellow(); break;
+        case 52: releaseBlue(); break;
+        case 53: releaseOrange(); break;
+    }
+
+    held_keys[keyCode] = false;
     printKey("^^^^ keyReleased", key,   keyCode);
 }
 

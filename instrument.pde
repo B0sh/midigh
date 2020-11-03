@@ -10,9 +10,13 @@ class Instrument
 
     void depressFret(int fret_index) { }
     void releaseFret(int fret_index) { }
+    boolean isFretHeld(int fret_index) {
+        return false;
+    }
 
     void up() { }
     void down() { }
+    
     void left() {
         offsetDown();
     }
