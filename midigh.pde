@@ -20,7 +20,6 @@ import java.util.HashMap;
 Ini config;
 
 String SCALE = "Pentatonic";
-boolean[] HELD_FRETS;
 int[] FRETS_PITCH;
 int WHAMMY;
 int STARPOWER;
@@ -73,7 +72,6 @@ void setup()
 
     fretboard = setFretboard("Pentatonic", TRANSPOSE);
 
-    HELD_FRETS = new boolean[5];
     FRETS_PITCH = new int[5];
     
     FRETS_PITCH = setFrets(OFFSET, fretboard);

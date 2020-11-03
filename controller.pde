@@ -45,11 +45,11 @@ void startButton() {
 // get analog controller input
 void pollControllerInput()
 {
-    HELD_FRETS[0] = controller.getButton("GREEN").pressed();
-    HELD_FRETS[1] = controller.getButton("RED").pressed();
-    HELD_FRETS[2] = controller.getButton("YELLOW").pressed();
-    HELD_FRETS[3] = controller.getButton("BLUE").pressed();
-    HELD_FRETS[4] = controller.getButton("ORANGE").pressed();
+    // HELD_FRETS[0] = controller.getButton("GREEN").pressed();
+    // HELD_FRETS[1] = controller.getButton("RED").pressed();
+    // HELD_FRETS[2] = controller.getButton("YELLOW").pressed();
+    // HELD_FRETS[3] = controller.getButton("BLUE").pressed();
+    // HELD_FRETS[4] = controller.getButton("ORANGE").pressed();
     
     WHAMMY = int(map(controller.getSlider("WHAMMY").getValue(), -1, 1, 64, 32));
 

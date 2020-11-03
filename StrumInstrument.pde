@@ -4,10 +4,17 @@ class StrumInstrument extends Instrument
         return "Strum Mode";
     }
 
+    boolean[] held_frets = new boolean[5];
     int[] last_held_frets_pitch = new int[5];
+    void depressFret(int fret_index)
+    {
+        held_frets[fret_index] = true;
+    }
 
     void releaseFret(int fret_index)
     {
+        held_frets[fret_index] = false;
+
         if (last_held_frets_pitch[fret_index] != 0)
         {
             myBus.sendNoteOff(0, last_held_frets_pitch[fret_index], VOLUME);
@@ -58,7 +65,7 @@ class StrumInstrument extends Instrument
     {
         int chord = 0;
         for (int i = 0; i < 5; i++) {
-            if (HELD_FRETS[i])
+            if (held_frets[i])
                 chord += pow(2, i);
         }
         
@@ -90,7 +97,7 @@ class StrumInstrument extends Instrument
         
         int[] temp = { 0, 0, 0, 0, 0 };
         for (int i = 0; i < 5; i++) {
-            if (HELD_FRETS[i])
+            if (held_frets[i])
                 temp[i] = FRETS_PITCH[i];
             else
                 temp[i] = 0;
